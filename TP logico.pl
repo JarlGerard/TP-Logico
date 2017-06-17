@@ -8,18 +8,17 @@ pareja(bernardo, bianca).
 trabajaPara(marsellus, vincent).
 trabajaPara(marsellus, jules).
 trabajaPara(marsellus, winston).
-
+trabajaPara(Empleador, bernardo):-
+	trabajaPara(marsellus, Empleador),
+	Empleador \= jules.
+trabajaPara(Empleador, george):-
+	saleCon(Empleador,bernardo).
 
 saleCon(Persona, OtraPersona):-
 	pareja(Persona, OtraPersona).
 saleCon(Persona, OtraPersona):-
 	pareja(OtraPersona, Persona).
 
-trabajaPara(Empleador, bernardo):-
-	trabajaPara(marsellus, Empleador),
-	Empleador \= jules.
-trabajaPara(Empleador, george):-
-	saleCon(Empleador,bernardo).
 
 esFiel(Persona):-
 	saleCon(Persona,_),
@@ -76,11 +75,18 @@ sanCayetano(Personaje):-
 	forall(tieneCerca(Personaje, AlguienCercano), encargo(Personaje, AlguienCercano, _)).
 	
 sonAmigos(Persona, OtraPersona):-
-	amigos(Persona, OtraPersona).
+	amigo(Persona, OtraPersona).
 sonAmigos(Persona,OtraPersona):-
-	amigos(OtraPersona,Persona).
+	amigo(OtraPersona,Persona).
+
+trabajanJuntos(Persona, OtraPersona):-
+	trabajaPara(Persona, OtraPersona).
+trabajanJuntos(Persona, OtraPersona):-
+	trabajaPara(OtraPersona, Persona).
 
 tieneCerca(Personaje, AlguienCercano):-
-	sonAmigos(Personaje,AlguienCercano),
-	Personaje\=AlguienCercano.
+	sonAmigos(Personaje,AlguienCercano).
+tieneCerca(Personaje, AlguienCercano):-
+	trabajanJuntos(Personaje, AlguienCercano).
+
 
