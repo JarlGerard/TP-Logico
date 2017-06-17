@@ -70,3 +70,17 @@ esPeligroso(Personaje):-
 esPeligroso(Personaje):-
 	trabajaPara(Jefe, Personaje),
 	esPeligroso(Jefe).
+	
+sanCayetano(Personaje):-
+	tieneCerca(Personaje, _),
+	forall(tieneCerca(Personaje, AlguienCercano), encargo(Personaje, AlguienCercano, _)).
+
+tieneCerca(Personaje, AlguienCercano):-
+	sonAmigos(Persona,OtraPersona),
+	sonAmigos(OtraPersona,Persona).
+	
+sonAmigos(Persona, OtraPersona):-
+	amigos(Persona, OtraPersona).
+	
+sonAmigos(Persona,OtraPersona):-
+	amigos(OtraPersona,Persona).
