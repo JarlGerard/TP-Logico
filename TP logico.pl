@@ -61,3 +61,12 @@ encargo(bernardo, winston, buscar(jules, lugano)).
 amigo(vincent, jules).
 amigo(jules, jimmie).
 amigo(vincent, elVendedor).
+
+esPeligroso(Personaje):-
+	personaje(Personaje, ladron(Lista)),
+	member(licorerias, Lista).
+esPeligroso(Personaje):-
+	personaje(Personaje, mafioso(maton)).
+esPeligroso(Personaje):-
+	trabajaPara(Jefe, Personaje),
+	esPeligroso(Jefe).
