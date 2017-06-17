@@ -77,7 +77,7 @@ sanCayetano(Personaje):-
 
 tieneCerca(Personaje, AlguienCercano):-
 	sonAmigos(Persona,OtraPersona),
-	sonAmigos(OtraPersona,Persona).
+	Persona\=OtraPersona.
 	
 sonAmigos(Persona, OtraPersona):-
 	amigos(Persona, OtraPersona).
