@@ -15,3 +15,14 @@ saleCon(Persona, OtraPersona):-
 saleCon(Persona, OtraPersona):-
 	pareja(OtraPersona, Persona).
 
+trabajaPara(Empleador, bernardo):-
+	trabajaPara(marsellus, Empleador),
+	Empleador \= jules.
+trabajaPara(Empleador, george):-
+	saleCon(Empleador,bernardo).
+
+esFiel(Persona):-
+	saleCon(Persona,_),
+	findall(SuPareja, saleCon(Persona, SuPareja),SusParejas),
+	length(SusParejas, Cantidad),
+	Cantidad=1.
