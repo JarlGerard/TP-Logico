@@ -74,13 +74,13 @@ esPeligroso(Personaje):-
 sanCayetano(Personaje):-
 	tieneCerca(Personaje, _),
 	forall(tieneCerca(Personaje, AlguienCercano), encargo(Personaje, AlguienCercano, _)).
-
-tieneCerca(Personaje, AlguienCercano):-
-	sonAmigos(Persona,OtraPersona),
-	Persona\=OtraPersona.
 	
 sonAmigos(Persona, OtraPersona):-
 	amigos(Persona, OtraPersona).
-	
 sonAmigos(Persona,OtraPersona):-
 	amigos(OtraPersona,Persona).
+
+tieneCerca(Personaje, AlguienCercano):-
+	sonAmigos(Personaje,AlguienCercano),
+	Personaje\=AlguienCercano.
+
