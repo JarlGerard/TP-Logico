@@ -101,3 +101,12 @@ nivelRespetoOcupacion(mafioso(resuelveProblemas), Nivel):-
 	Nivel is 10.
 nivelRespetoOcupacion(mafioso(capo), Nivel):-
 	Nivel is 20.
+
+cantidadEncargos(Personaje, CantidadEncargos):-
+	encargo(_, Personaje, _),
+	findall(Tarea, encargo(_, Personaje, Tarea), Tareas),
+	length(Tareas, CantidadEncargos).
+
+masAtareado(Personaje):-
+	cantidadEncargos(Personaje, CantidadPersonaje),
+	forall((cantidadEncargos(OtroPersonaje, CantidadOtroPersonaje),Personaje\=OtroPersonaje),CantidadPersonaje>CantidadOtroPersonaje).
