@@ -79,14 +79,25 @@ sonAmigos(Persona, OtraPersona):-
 sonAmigos(Persona,OtraPersona):-
 	amigo(OtraPersona,Persona).
 
-trabajanJuntos(Persona, OtraPersona):-
-	trabajaPara(Persona, OtraPersona).
-trabajanJuntos(Persona, OtraPersona):-
-	trabajaPara(OtraPersona, Persona).
-
 tieneCerca(Personaje, AlguienCercano):-
 	sonAmigos(Personaje,AlguienCercano).
 tieneCerca(Personaje, AlguienCercano):-
 	trabajanJuntos(Personaje, AlguienCercano).
 
+trabajanJuntos(Persona, OtraPersona):-
+	trabajaPara(Persona, OtraPersona).
+trabajanJuntos(Persona, OtraPersona):-
+	trabajaPara(OtraPersona, Persona).
 
+nivelRespeto(vincent, 15).
+nivelRespeto(Personaje, Nivel):-
+	personaje(Personaje, Ocupacion),
+	nivelRespetoOcupacion(Ocupacion, Nivel).
+
+nivelRespetoOcupacion(actriz(Peliculas), Nivel):-
+	length(Peliculas, Cantidad),
+	Nivel is Cantidad/10.
+nivelRespetoOcupacion(mafioso(resuelveProblemas), Nivel):-
+	Nivel is 10.
+nivelRespetoOcupacion(mafioso(capo), Nivel):-
+	Nivel is 20.
