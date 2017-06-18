@@ -89,4 +89,14 @@ tieneCerca(Personaje, AlguienCercano):-
 tieneCerca(Personaje, AlguienCercano):-
 	trabajanJuntos(Personaje, AlguienCercano).
 
-
+nivelRespeto(vincent,15).
+nivelRespeto(Personaje,Nivel):-
+	personaje(Personaje, actriz(Lista)),
+	length(Lista,Largo),
+	Nivel is Largo/10.
+nivelRespeto(Personaje,Nivel):-
+	personaje(Personaje, mafioso(resuelveProblemas)),
+	Nivel is 10.
+nivelRespeto(Personaje,Nivel):-
+	personaje(Personaje,mafioso(capo)),
+	Nivel is 20.
