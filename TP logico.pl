@@ -100,3 +100,19 @@ nivelRespeto(Personaje,Nivel):-
 nivelRespeto(Personaje,Nivel):-
 	personaje(Personaje,mafioso(capo)),
 	Nivel is 20.
+
+respetabilidad(Respetables, NoRespetables):-
+	losRespetables(Respetables),
+	losNoRespetables(NoRespetables).
+
+losRespetables(Respetables):-
+	findall(Personaje, personajeRespetable(Personaje), PersonajesRespetables),
+	length(PersonajesRespetables, Respetables).
+
+losNoRespetables(NoRespetables):-
+	findall(Personaje, not(personajeRespetable(Personaje)), PersonajesNoRespetables),
+	length(PersonajesNoRespetables, NoRespetables).
+
+personajeRespetable(Personaje):-
+	nivelRespeto(Personaje, Nivel),
+	Nivel > 9.
