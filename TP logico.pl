@@ -102,6 +102,22 @@ nivelRespetoOcupacion(mafioso(resuelveProblemas), Nivel):-
 nivelRespetoOcupacion(mafioso(capo), Nivel):-
 	Nivel is 20.
 
+respetabilidad(Respetables, NoRespetables):-
+	losRespetables(Respetables),
+	losNoRespetables(NoRespetables).
+	
+losRespetables(Respetables):-
+	findall(Personaje, personajeRespetable(Personaje), PersonajesRespetables),
+	length(PersonajesRespetables, Respetables).
+
+losNoRespetables(NoRespetables):-
+	findall(Personaje, (esPersonaje(Personaje), not(personajesRespetables(Personaje))) PersonajesNoRespetables),
+	length(PersonajesNoRespetables, NoRespetables).
+	
+personajeRespetable(Personaje):-
+	nivelRespeto(Personjae,Nivel),
+	Nivel is > 9.
+
 cantidadEncargos(Personaje, CantidadEncargos):-
 	encargo(_, Personaje, _),
 	findall(Tarea, encargo(_, Personaje, Tarea), Tareas),
