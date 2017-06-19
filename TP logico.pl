@@ -97,10 +97,8 @@ nivelRespeto(Personaje, Nivel):-
 nivelRespetoOcupacion(actriz(Peliculas), Nivel):-
 	length(Peliculas, Cantidad),
 	Nivel is Cantidad/10.
-nivelRespetoOcupacion(mafioso(resuelveProblemas), Nivel):-
-	Nivel is 10.
-nivelRespetoOcupacion(mafioso(capo), Nivel):-
-	Nivel is 20.
+nivelRespetoOcupacion(mafioso(resuelveProblemas), 10).
+nivelRespetoOcupacion(mafioso(capo), 20).
 
 esPersonaje(Personaje):-
 	personaje(Personaje,_).
@@ -114,12 +112,12 @@ losRespetables(Respetables):-
 	length(PersonajesRespetables, Respetables).
 
 losNoRespetables(NoRespetables):-
-	findall(Personaje, (esPersonaje(Personaje), not(personajesRespetables(Personaje))) PersonajesNoRespetables),
+	findall(Personaje, (esPersonaje(Personaje), not(personajeRespetable(Personaje))), PersonajesNoRespetables),
 	length(PersonajesNoRespetables, NoRespetables).
 	
 personajeRespetable(Personaje):-
-	nivelRespeto(Personjae,Nivel),
-	Nivel is > 9.
+	nivelRespeto(Personaje,Nivel),
+	Nivel > 9.
 
 cantidadEncargos(Personaje, CantidadEncargos):-
 	encargo(_, Personaje, _),
