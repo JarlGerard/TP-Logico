@@ -102,6 +102,9 @@ nivelRespetoOcupacion(mafioso(resuelveProblemas), Nivel):-
 nivelRespetoOcupacion(mafioso(capo), Nivel):-
 	Nivel is 20.
 
+esPersonaje(Personaje):-
+	personaje(Personaje,_).
+	
 respetabilidad(Respetables, NoRespetables):-
 	losRespetables(Respetables),
 	losNoRespetables(NoRespetables).
